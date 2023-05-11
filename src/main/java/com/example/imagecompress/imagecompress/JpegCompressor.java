@@ -7,10 +7,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class JpegCompressor {
-  private final Support support;
+  private final ImageCompressorSupport imageCompressorSupport;
 
-  public JpegCompressor(Support support) {
-    this.support = support;
+  public JpegCompressor(TemporaryFileStorage temporaryFileStorage) {
+    this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage);
   }
 
   public void main() throws Exception {
@@ -21,8 +21,8 @@ public class JpegCompressor {
     ImageWriter writer = ImageIO.getImageWritersByFormatName("jpeg").next();
     ImageWriteParam param = buildImageWriteParam(writer);
 
-    File compressedFile = new File("build/output.jpg");
-    support.extracted(image, writer, param, compressedFile);
+
+    imageCompressorSupport.extracted(image, writer, param, ImageCompressorSupport.ImageFormat.JPEG);
     writer.dispose();
   }
 

@@ -8,11 +8,11 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class PNGCompressionExample {
-    private final Support support;
+public class PngCompressionExample {
+    private final ImageCompressorSupport imageCompressorSupport;
 
-    public PNGCompressionExample(Support support) {
-        this.support = support;
+    public PngCompressionExample(TemporaryFileStorage temporaryFileStorage) {
+        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage);
     }
 
     public void main() {
@@ -28,7 +28,7 @@ public class PNGCompressionExample {
             // Create a file to save the compressed image
             File compressedFile = new File("build/output.png");
 
-            support.extracted(originalImage, writer, writeParam, compressedFile);
+            imageCompressorSupport.extracted(originalImage, writer, writeParam, ImageCompressorSupport.ImageFormat.PNG);
             writer.dispose();
 
             System.out.println("Image compression completed successfully.");

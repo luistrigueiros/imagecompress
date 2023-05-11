@@ -1,7 +1,5 @@
 package com.example.imagecompress.imagecompress;
 
-import org.springframework.stereotype.Component;
-
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
@@ -10,9 +8,25 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-@Component
-public class Support {
-    void extracted(BufferedImage originalImage, ImageWriter writer, ImageWriteParam writeParam, File compressedFile) throws IOException {
+public class ImageCompressorSupport {
+    public enum ImageFormat {
+        GIF("gif"),
+        JPEG("jpg"),
+        PNG("png");
+        public final String label;
+
+        ImageFormat(String label) {
+            this.label = label;
+        }
+    }
+    private final TemporaryFileStorage temporaryFileStorage;
+
+    public ImageCompressorSupport(TemporaryFileStorage temporaryFileStorage) {
+        this.temporaryFileStorage = temporaryFileStorage;
+    }
+
+    void extracted(BufferedImage originalImage, ImageWriter writer, ImageWriteParam writeParam, ImageFormat imageType) throws IOException {
+        File compressedFile = temporaryFileStorage.createTemporayFile("." + imageType.label);
         // Create an ImageOutputStream to write the compressed image
         try (ImageOutputStream outputStream = ImageIO.createImageOutputStream(compressedFile)) {
 
