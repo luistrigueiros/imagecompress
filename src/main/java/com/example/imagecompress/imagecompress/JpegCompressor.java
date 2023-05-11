@@ -7,7 +7,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class JpegCompressor {
-  public static void main(String[] args) throws Exception {
+  private final Support support;
+
+  public JpegCompressor(Support support) {
+    this.support = support;
+  }
+
+  public void main() throws Exception {
     // Load the original image
     BufferedImage image = ImageIO.read(new File("input.jpg"));
 
@@ -16,7 +22,7 @@ public class JpegCompressor {
     ImageWriteParam param = buildImageWriteParam(writer);
 
     File compressedFile = new File("build/output.jpg");
-    Support.extracted(image, writer, param, compressedFile);
+    support.extracted(image, writer, param, compressedFile);
     writer.dispose();
   }
 

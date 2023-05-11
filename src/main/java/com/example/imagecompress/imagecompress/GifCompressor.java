@@ -7,7 +7,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class GifCompressor {
-    public static void main(String[] args) throws Exception {
+    private final Support support;
+
+    public GifCompressor(Support support) {
+        this.support = support;
+    }
+
+    public void main() throws Exception {
         // Load the GIF image
         BufferedImage gifImage = ImageIO.read(new File("input.gif"));
         
@@ -17,13 +23,13 @@ public class GifCompressor {
 
         // Create an output file
         File output = new File("build/output.gif");
-        Support.extracted(gifImage, writer, writeParam, output);
+        support.extracted(gifImage, writer, writeParam, output);
 
         // Close the writer and output stream
         writer.dispose();
     }
 
-    private static ImageWriteParam buildImageWriteParam(ImageWriter writer) {
+    private ImageWriteParam buildImageWriteParam(ImageWriter writer) {
         // Set the compression parameters
         ImageWriteParam writeParam = writer.getDefaultWriteParam();
         writeParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);

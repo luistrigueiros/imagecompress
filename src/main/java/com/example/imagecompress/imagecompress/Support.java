@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @Component
 public class Support {
-    static void extracted(BufferedImage originalImage, ImageWriter writer, ImageWriteParam writeParam, File compressedFile) throws IOException {
+    void extracted(BufferedImage originalImage, ImageWriter writer, ImageWriteParam writeParam, File compressedFile) throws IOException {
         // Create an ImageOutputStream to write the compressed image
         try (ImageOutputStream outputStream = ImageIO.createImageOutputStream(compressedFile)) {
 
