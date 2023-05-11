@@ -1,0 +1,20 @@
+# Getting Started
+
+### Reference Documentation
+For further reference, please consider the following sections:
+
+* [Official Gradle documentation](https://docs.gradle.org)
+* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.7.11/gradle-plugin/reference/html/)
+* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.11/gradle-plugin/reference/html/#build-image)
+* [Spring cache abstraction](https://docs.spring.io/spring-boot/docs/2.7.11/reference/htmlsingle/#io.caching)
+
+### Guides
+The following guides illustrate how to use some features concretely:
+
+* [Caching Data with Spring](https://spring.io/guides/gs/caching/)
+
+### Additional Links
+These additional references should also help you:
+
+* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+
