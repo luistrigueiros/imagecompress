@@ -7,30 +7,37 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class JpegCompressor {
-  private final ImageCompressorSupport imageCompressorSupport;
+    private final ImageCompressorSupport imageCompressorSupport;
 
-  public JpegCompressor(TemporaryFileStorage temporaryFileStorage) {
-    this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage);
-  }
+    static class JpegCompressParamsFactory implements CompressParamsFactory {
 
-  public void main() throws Exception {
-    // Load the original image
-    BufferedImage image = ImageIO.read(new File("input.jpg"));
+        @Override
+        public ImageWriter getWriter() {
+            return ImageIO.getImageWritersByFormatName("jpeg").next();
+        }
 
-    // Get the JPEG image writer
-    ImageWriter writer = ImageIO.getImageWritersByFormatName("jpeg").next();
-    ImageWriteParam param = buildImageWriteParam(writer);
+        @Override
+        public ImageWriteParam getImageWriteParam(ImageWriter writer) {
+            return buildImageWriteParam(writer);
+        }
 
+        private ImageWriteParam buildImageWriteParam(ImageWriter writer) {
+            // Set the compression quality to 0.5
+            ImageWriteParam param = writer.getDefaultWriteParam();
+            param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+            param.setCompressionQuality(0.5f);
+            return param;
+        }
 
-    imageCompressorSupport.extracted(image, writer, param, ImageCompressorSupport.ImageFormat.JPEG);
-    writer.dispose();
-  }
+    };
 
-  private static ImageWriteParam buildImageWriteParam(ImageWriter writer) {
-    // Set the compression quality to 0.5
-    ImageWriteParam param = writer.getDefaultWriteParam();
-    param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-    param.setCompressionQuality(0.5f);
-    return param;
-  }
+    public JpegCompressor(TemporaryFileStorage temporaryFileStorage) {
+        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new JpegCompressParamsFactory());
+    }
+
+    public void main() throws Exception {
+        BufferedImage image = ImageIO.read(new File("input.jpg"));
+        File file = imageCompressorSupport.compressImage(image, ImageCompressorSupport.ImageFormat.JPEG);
+    }
+
 }

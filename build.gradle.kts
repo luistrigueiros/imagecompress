@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
 	implementation("commons-io:commons-io:2.11.0")
-//	implementation("com.github.ben-manes.caffeine:caffeine:3.1.6")
+	implementation("com.github.ben-manes.caffeine:caffeine:2.9.3")
 	implementation("org.springframework.boot:spring-boot-starter-cache")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.awaitility:awaitility:4.2.0")

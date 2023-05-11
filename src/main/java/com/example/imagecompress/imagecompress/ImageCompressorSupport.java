@@ -1,7 +1,6 @@
 package com.example.imagecompress.imagecompress;
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
@@ -19,22 +18,30 @@ public class ImageCompressorSupport {
             this.label = label;
         }
     }
-    private final TemporaryFileStorage temporaryFileStorage;
 
-    public ImageCompressorSupport(TemporaryFileStorage temporaryFileStorage) {
+    private final TemporaryFileStorage temporaryFileStorage;
+    private final CompressParamsFactory compressParamsFactory;
+    private final DisposalMgr disposalMgr = new DisposalMgr();
+
+    public ImageCompressorSupport(TemporaryFileStorage temporaryFileStorage, CompressParamsFactory compressParamsFactory) {
         this.temporaryFileStorage = temporaryFileStorage;
+        this.compressParamsFactory = compressParamsFactory;
     }
 
-    void extracted(BufferedImage originalImage, ImageWriter writer, ImageWriteParam writeParam, ImageFormat imageType) throws IOException {
+    public File compressImage(BufferedImage originalImage, ImageFormat imageType) throws IOException {
         File compressedFile = temporaryFileStorage.createTemporayFile("." + imageType.label);
+        ImageWriter writer = compressParamsFactory.getWriter();
         // Create an ImageOutputStream to write the compressed image
         try (ImageOutputStream outputStream = ImageIO.createImageOutputStream(compressedFile)) {
-
             // Set the output destination for the writer
             writer.setOutput(outputStream);
 
             // Write the image with the specified compression settings
-            writer.write(null, new javax.imageio.IIOImage(originalImage, null, null), writeParam);
+            writer.write(null, new javax.imageio.IIOImage(originalImage, null, null),
+                    compressParamsFactory.getImageWriteParam(writer));
+
+            disposalMgr.register(compressedFile, writer);
         }
+        return compressedFile;
     }
 }
