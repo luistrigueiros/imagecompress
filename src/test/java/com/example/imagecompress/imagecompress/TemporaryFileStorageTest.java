@@ -1,5 +1,6 @@
 package com.example.imagecompress.imagecompress;
 
+import com.example.imagecompress.imagecompress.support.FileAgeWaitFilter;
 import org.apache.commons.io.FileUtils;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,11 +46,6 @@ class TemporaryFileStorageTest {
     }
 
     private File getBaseDirectory() throws IOException {
-        String tmpdir = System.getProperty("java.io.tmpdir") + File.separatorChar + "TMP_IMG_STORAGE";
-        File dir = Paths.get(tmpdir).toFile();
-        if (dir.exists()) {
-            return dir;
-        }
-        return Files.createDirectory(dir.toPath()).toFile();
+        return Files.createTempDirectory("TMP_IMG_STORAGE").toFile();
     }
 }

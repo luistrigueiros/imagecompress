@@ -1,5 +1,7 @@
 package com.example.imagecompress.imagecompress;
 
+import com.example.imagecompress.imagecompress.support.ImageCompressorSupport;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;

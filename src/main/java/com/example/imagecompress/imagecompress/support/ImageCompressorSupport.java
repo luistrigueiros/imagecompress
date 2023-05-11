@@ -1,4 +1,6 @@
-package com.example.imagecompress.imagecompress;
+package com.example.imagecompress.imagecompress.support;
+
+import com.example.imagecompress.imagecompress.TemporaryFileStorage;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriter;
@@ -29,6 +31,7 @@ public class ImageCompressorSupport {
     }
 
     public File compressImage(BufferedImage originalImage, ImageFormat imageType) throws IOException {
+        ImageToGrayscale.transformToGrayscale(originalImage);
         File compressedFile = temporaryFileStorage.createTemporayFile("." + imageType.label);
         ImageWriter writer = compressParamsFactory.getWriter();
         // Create an ImageOutputStream to write the compressed image

@@ -1,4 +1,4 @@
-package com.example.imagecompress.imagecompress;
+package com.example.imagecompress.imagecompress.support;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
