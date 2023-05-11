@@ -28,8 +28,7 @@ public class JpegCompressor implements ImageCompressor {
             param.setCompressionQuality(0.5f);
             return param;
         }
-
-    };
+    }
 
     private final ImageCompressorSupport imageCompressorSupport;
 
