@@ -8,11 +8,10 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 
-public class PngCompressor {
-    private static class xxx implements CompressParamsFactory {
+public class PngCompressor implements ImageCompressor {
+    private static class PngCompressParamsFactory implements CompressParamsFactory {
 
         @Override
         public ImageWriter getWriter() {
@@ -38,20 +37,12 @@ public class PngCompressor {
     private final ImageCompressorSupport imageCompressorSupport;
 
     public PngCompressor(TemporaryFileStorage temporaryFileStorage) {
-        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new xxx());
+        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new PngCompressParamsFactory());
     }
 
-    public void main() {
-        try {
-            // Load the original PNG image
-            BufferedImage originalImage = ImageIO.read(new File("input.png"));
-
-            imageCompressorSupport.compressImage(originalImage, ImageCompressorSupport.ImageFormat.PNG);
-//            writer.dispose();
-
-            System.out.println("Image compression completed successfully.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public File compress(File input) throws Exception {
+        BufferedImage originalImage = ImageIO.read(input);
+        return imageCompressorSupport.compressImage(originalImage, ImageCompressorSupport.ImageFormat.PNG);
     }
 }

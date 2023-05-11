@@ -9,11 +9,8 @@ import javax.imageio.ImageWriter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class JpegCompressor {
-    private final ImageCompressorSupport imageCompressorSupport;
-
+public class JpegCompressor implements ImageCompressor {
     static class JpegCompressParamsFactory implements CompressParamsFactory {
-
         @Override
         public ImageWriter getWriter() {
             return ImageIO.getImageWritersByFormatName("jpeg").next();
@@ -34,13 +31,15 @@ public class JpegCompressor {
 
     };
 
+    private final ImageCompressorSupport imageCompressorSupport;
+
+    @Override
+    public File compress(File input) throws Exception {
+        BufferedImage image = ImageIO.read(input);
+        return imageCompressorSupport.compressImage(image, ImageCompressorSupport.ImageFormat.JPEG);
+    }
+
     public JpegCompressor(TemporaryFileStorage temporaryFileStorage) {
         this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new JpegCompressParamsFactory());
     }
-
-    public void main() throws Exception {
-        BufferedImage image = ImageIO.read(new File("input.jpg"));
-        File file = imageCompressorSupport.compressImage(image, ImageCompressorSupport.ImageFormat.JPEG);
-    }
-
 }
