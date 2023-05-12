@@ -15,9 +15,9 @@ public class TestSupport {
     static float getCompressedPercentage(File file, File compressed) {
         long inputSize = FileUtils.sizeOf(file);
         long outputSize = FileUtils.sizeOf(compressed);
-        Assertions.assertTrue(inputSize > outputSize);
         float compressedPercentage = 100 - ((float) outputSize / inputSize) * 100;
         logger.debug("inputSize={},  outputSize={}, compression={}", inputSize, outputSize,compressedPercentage);
+        Assertions.assertTrue(inputSize > outputSize);
         return compressedPercentage;
     }
 
