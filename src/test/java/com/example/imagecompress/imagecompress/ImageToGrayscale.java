@@ -1,4 +1,4 @@
-package com.example.imagecompress.imagecompress.support;
+package com.example.imagecompress.imagecompress;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

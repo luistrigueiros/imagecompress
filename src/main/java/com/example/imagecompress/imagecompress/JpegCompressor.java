@@ -34,8 +34,7 @@ public class JpegCompressor implements ImageCompressor {
 
     @Override
     public File compress(File input) throws Exception {
-        BufferedImage image = ImageIO.read(input);
-        return imageCompressorSupport.compressImage(image, ImageCompressorSupport.ImageFormat.JPEG);
+        return imageCompressorSupport.compressImage(input, ImageCompressorSupport.ImageFormat.JPEG);
     }
 
     public JpegCompressor(TemporaryFileStorage temporaryFileStorage) {

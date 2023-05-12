@@ -6,7 +6,6 @@ import com.example.imagecompress.imagecompress.support.ImageCompressorSupport;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 
@@ -42,7 +41,6 @@ public class PngCompressor implements ImageCompressor {
 
     @Override
     public File compress(File input) throws Exception {
-        BufferedImage originalImage = ImageIO.read(input);
-        return imageCompressorSupport.compressImage(originalImage, ImageCompressorSupport.ImageFormat.PNG);
+        return imageCompressorSupport.compressImage(input, ImageCompressorSupport.ImageFormat.PNG);
     }
 }

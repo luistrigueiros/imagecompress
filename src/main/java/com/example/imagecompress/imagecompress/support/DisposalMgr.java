@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class DisposalMgr {
     private final static Logger logger = LoggerFactory.getLogger(DisposalMgr.class);
     private final Cache<String, ImageWriter> cache = Caffeine.newBuilder()
-            .expireAfterWrite(50, TimeUnit.MILLISECONDS)
+            .expireAfterWrite(250, TimeUnit.MILLISECONDS)
             .evictionListener((String key, ImageWriter writer, RemovalCause cause) -> {
                 if (writer != null) {
                     writer.dispose();

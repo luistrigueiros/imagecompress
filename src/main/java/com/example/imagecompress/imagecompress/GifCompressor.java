@@ -2,8 +2,6 @@ package com.example.imagecompress.imagecompress;
 
 import com.example.imagecompress.imagecompress.support.ImageCompressorSupport;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class GifCompressor implements ImageCompressor {
@@ -15,7 +13,6 @@ public class GifCompressor implements ImageCompressor {
 
     @Override
     public File compress(File input) throws Exception {
-        BufferedImage gifImage = ImageIO.read(input);
-        return imageCompressorSupport.compressImage(gifImage, ImageCompressorSupport.ImageFormat.GIF);
+        return imageCompressorSupport.compressImage(input, ImageCompressorSupport.ImageFormat.GIF);
     }
 }

@@ -30,8 +30,8 @@ public class ImageCompressorSupport {
         this.compressParamsFactory = compressParamsFactory;
     }
 
-    public File compressImage(BufferedImage originalImage, ImageFormat imageType) throws IOException {
-        ImageToGrayscale.transformToGrayscale(originalImage);
+    public File compressImage(File input, ImageFormat imageType) throws IOException {
+        BufferedImage originalImage = ImageIO.read(input);
         File compressedFile = temporaryFileStorage.createTemporayFile("." + imageType.label);
         ImageWriter writer = compressParamsFactory.getWriter();
         // Create an ImageOutputStream to write the compressed image
