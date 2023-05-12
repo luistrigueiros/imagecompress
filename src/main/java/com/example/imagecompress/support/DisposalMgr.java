@@ -20,7 +20,7 @@ public class DisposalMgr {
             .evictionListener((String key, ImageWriter writer, RemovalCause cause) -> {
                 if (writer != null) {
                     writer.dispose();
-                    logger.debug("Disposing key=[{}] item=[{}]", key, cause);
+                    logger.info("Disposing key=[{}] item=[{}]", key, cause);
                 }
             })
             .build();
