@@ -23,7 +23,7 @@ class AllImageToGrayscaleTest {
     @BeforeAll
     static void init() throws IOException {
         TemporaryFileStorage temporaryFileStorage = getTemporaryFileStorage();
-        imageToGrayscale = new ImageToGrayscale2(temporaryFileStorage);
+        imageToGrayscale = new ImageToGrayscale3(temporaryFileStorage);
     }
     private static Stream<Arguments> samples() throws IOException {
         return Stream.of(
