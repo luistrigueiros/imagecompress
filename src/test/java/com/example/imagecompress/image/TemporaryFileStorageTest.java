@@ -1,6 +1,6 @@
-package com.example.imagecompress.imagecompress;
+package com.example.imagecompress.image;
 
-import com.example.imagecompress.imagecompress.support.TemporaryFileStorageFactory;
+import com.example.imagecompress.support.TemporaryFileStorageFactory;
 import org.apache.commons.io.FileUtils;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.BeforeEach;

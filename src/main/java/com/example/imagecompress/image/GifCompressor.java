@@ -1,7 +1,7 @@
-package com.example.imagecompress.imagecompress;
+package com.example.imagecompress.image;
 
-import com.example.imagecompress.imagecompress.support.ImageCompressorSupport;
-import com.example.imagecompress.imagecompress.support.ImageFormat;
+import com.example.imagecompress.support.ImageCompressorSupport;
+import com.example.imagecompress.support.ImageFormat;
 
 import java.io.File;
 

@@ -1,11 +1,10 @@
-package com.example.imagecompress.imagecompress;
+package com.example.imagecompress.image;
 
-import com.example.imagecompress.imagecompress.support.ImageFormat;
+import com.example.imagecompress.support.ImageFormat;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.color.ColorSpace;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;

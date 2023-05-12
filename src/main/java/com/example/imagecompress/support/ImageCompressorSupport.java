@@ -1,6 +1,6 @@
-package com.example.imagecompress.imagecompress.support;
+package com.example.imagecompress.support;
 
-import com.example.imagecompress.imagecompress.TemporaryFileStorage;
+import com.example.imagecompress.image.TemporaryFileStorage;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriter;

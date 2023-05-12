@@ -1,4 +1,4 @@
-package com.example.imagecompress.imagecompress.support;
+package com.example.imagecompress.support;
 
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;

@@ -1,4 +1,4 @@
-package com.example.imagecompress.imagecompress;
+package com.example.imagecompress.image;
 
 import java.io.File;
 

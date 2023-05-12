@@ -1,6 +1,6 @@
-package com.example.imagecompress.imagecompress;
+package com.example.imagecompress.image;
 
-import com.example.imagecompress.imagecompress.support.ImageFormat;
+import com.example.imagecompress.support.ImageFormat;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

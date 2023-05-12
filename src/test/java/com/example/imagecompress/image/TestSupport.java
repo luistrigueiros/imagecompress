@@ -1,6 +1,6 @@
-package com.example.imagecompress.imagecompress;
+package com.example.imagecompress.image;
 
-import com.example.imagecompress.imagecompress.support.TemporaryFileStorageFactory;
+import com.example.imagecompress.support.TemporaryFileStorageFactory;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;

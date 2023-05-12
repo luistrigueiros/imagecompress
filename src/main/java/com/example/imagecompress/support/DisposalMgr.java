@@ -1,4 +1,4 @@
-package com.example.imagecompress.imagecompress.support;
+package com.example.imagecompress.support;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;

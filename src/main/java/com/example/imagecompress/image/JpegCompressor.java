@@ -1,8 +1,8 @@
-package com.example.imagecompress.imagecompress;
+package com.example.imagecompress.image;
 
-import com.example.imagecompress.imagecompress.support.CompressParamsFactory;
-import com.example.imagecompress.imagecompress.support.ImageCompressorSupport;
-import com.example.imagecompress.imagecompress.support.ImageFormat;
+import com.example.imagecompress.support.CompressParamsFactory;
+import com.example.imagecompress.support.ImageCompressorSupport;
+import com.example.imagecompress.support.ImageFormat;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;

@@ -1,6 +1,6 @@
-package com.example.imagecompress.imagecompress;
+package com.example.imagecompress.image;
 
-import com.example.imagecompress.imagecompress.support.ImageFormat;
+import com.example.imagecompress.support.ImageFormat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-import static com.example.imagecompress.imagecompress.TestSupport.getTemporaryFileStorage;
+import static com.example.imagecompress.image.TestSupport.getTemporaryFileStorage;
 
 class AllImageToGrayscaleTest {
     private static final Logger logger = LoggerFactory.getLogger(AllImageToGrayscaleTest.class);
