@@ -2,6 +2,7 @@ package com.example.imagecompress.imagecompress;
 
 import com.example.imagecompress.imagecompress.support.CompressParamsFactory;
 import com.example.imagecompress.imagecompress.support.ImageCompressorSupport;
+import com.example.imagecompress.imagecompress.support.ImageFormat;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
@@ -42,6 +43,6 @@ public class PngCompressor implements ImageCompressor {
 
     @Override
     public File compressImage(File input) throws Exception {
-        return imageCompressorSupport.compressImage(input, ImageCompressorSupport.ImageFormat.PNG);
+        return imageCompressorSupport.compressImage(input, ImageFormat.PNG);
     }
 }

@@ -10,16 +10,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class ImageCompressorSupport {
-    public enum ImageFormat {
-        GIF("gif"),
-        JPEG("jpg"),
-        PNG("png");
-        public final String label;
-
-        ImageFormat(String label) {
-            this.label = label;
-        }
-    }
 
     private final TemporaryFileStorage temporaryFileStorage;
     private final CompressParamsFactory compressParamsFactory;

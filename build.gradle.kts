@@ -18,6 +18,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-cache")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.awaitility:awaitility:4.2.0")
+	testImplementation("org.junit.jupiter:junit-jupiter-params")
 }
 
 tasks.withType<Test> {

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.time.Duration;
 
 public class TestSupport {
-    private static final Logger logger = LoggerFactory.getLogger(JpegCompressorTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(AllImageCompressorTest.class);
     static float getCompressedPercentage(File file, File compressed) {
         long inputSize = FileUtils.sizeOf(file);
         long outputSize = FileUtils.sizeOf(compressed);

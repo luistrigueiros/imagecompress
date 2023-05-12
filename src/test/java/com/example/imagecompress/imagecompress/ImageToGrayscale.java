@@ -1,10 +1,22 @@
 package com.example.imagecompress.imagecompress;
 
+import com.example.imagecompress.imagecompress.support.ImageFormat;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ImageToGrayscale {
-    public static void transformToGrayscale(BufferedImage originalImage) {
+    private final TemporaryFileStorage temporaryFileStorage;
+
+    public ImageToGrayscale(TemporaryFileStorage temporaryFileStorage) {
+        this.temporaryFileStorage = temporaryFileStorage;
+    }
+
+    public File transformToGrayscale(File input, ImageFormat imageFormat) throws IOException {
+        BufferedImage originalImage = ImageIO.read(input);
         // Create a new image with the same dimensions as the original
         BufferedImage grayscaleImage = new BufferedImage(
                 originalImage.getWidth(),
@@ -25,5 +37,8 @@ public class ImageToGrayscale {
                 grayscaleImage.setRGB(x, y, grayColor.getRGB());
             }
         }
+        File output = temporaryFileStorage.createTemporayFile("." + imageFormat.label);
+        ImageIO.write(grayscaleImage,imageFormat.label, output);
+        return output;
     }
 }
