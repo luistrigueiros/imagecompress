@@ -10,6 +10,9 @@ import javax.imageio.ImageWriter;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * To do the resources clean up out of band from the calling thread and avoid file locking issues on windows
+ */
 public class DisposalMgr {
     private final static Logger logger = LoggerFactory.getLogger(DisposalMgr.class);
     private final Cache<String, ImageWriter> cache = Caffeine.newBuilder()
