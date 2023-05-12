@@ -1,4 +1,4 @@
-package com.example.imagecompress.image;
+package com.example.imagecompress;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

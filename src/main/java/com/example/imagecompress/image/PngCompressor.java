@@ -3,6 +3,7 @@ package com.example.imagecompress.image;
 import com.example.imagecompress.support.CompressParamsFactory;
 import com.example.imagecompress.support.ImageCompressorSupport;
 import com.example.imagecompress.support.ImageFormat;
+import org.springframework.util.StringUtils;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
@@ -44,5 +45,15 @@ public class PngCompressor implements ImageCompressor {
     @Override
     public File compressImage(File input) throws Exception {
         return imageCompressorSupport.compressImage(input, ImageFormat.PNG);
+    }
+
+    @Override
+    public Boolean canHandle(String type) {
+        return StringUtils.endsWithIgnoreCase(ImageFormat.PNG.label, type);
+    }
+
+    @Override
+    public ImageFormat getSupportImageFormat() {
+        return ImageFormat.PNG;
     }
 }

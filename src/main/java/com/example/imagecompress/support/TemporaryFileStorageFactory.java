@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.time.Duration;
 
 public class TemporaryFileStorageFactory {
+
     public static File getBaseDirectory() throws IOException {
         return Files.createTempDirectory("TMP_IMG_STORAGE").toFile();
     }
