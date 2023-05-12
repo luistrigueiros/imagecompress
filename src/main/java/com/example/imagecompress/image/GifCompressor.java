@@ -10,7 +10,7 @@ public class GifCompressor implements ImageCompressor {
     private final ImageCompressorSupport imageCompressorSupport;
 
     public GifCompressor(TemporaryFileStorage temporaryFileStorage) {
-        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new JpegCompressor.JpegCompressParamsFactory());
+        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new JpegCompressParamsFactory());
     }
 
     @Override
