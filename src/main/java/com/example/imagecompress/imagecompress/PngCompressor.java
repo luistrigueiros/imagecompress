@@ -28,7 +28,7 @@ public class PngCompressor implements ImageCompressor {
             writeParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
             writeParam.setCompressionType("Deflate");
             // Set the compression quality (0.0 to 1.0, where 1.0 is highest quality)
-            writeParam.setCompressionQuality(0.5f);
+            writeParam.setCompressionQuality(0.1f);
             return writeParam;
         }
     }
@@ -36,7 +36,8 @@ public class PngCompressor implements ImageCompressor {
     private final ImageCompressorSupport imageCompressorSupport;
 
     public PngCompressor(TemporaryFileStorage temporaryFileStorage) {
-        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new PngCompressParamsFactory());
+//        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new PngCompressParamsFactory());
+        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new JpegCompressor.JpegCompressParamsFactory());
     }
 
     @Override

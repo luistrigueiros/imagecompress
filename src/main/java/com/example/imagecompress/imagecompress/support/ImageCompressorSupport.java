@@ -42,7 +42,6 @@ public class ImageCompressorSupport {
             // Write the image with the specified compression settings
             writer.write(null, new javax.imageio.IIOImage(originalImage, null, null),
                     compressParamsFactory.getImageWriteParam(writer));
-
             disposalMgr.register(compressedFile, writer);
         }
         return compressedFile;

@@ -6,7 +6,7 @@ import com.example.imagecompress.imagecompress.support.ImageCompressorSupport;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
-import java.awt.image.BufferedImage;
+import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
 import java.io.File;
 
 public class JpegCompressor implements ImageCompressor {
@@ -22,10 +22,9 @@ public class JpegCompressor implements ImageCompressor {
         }
 
         private ImageWriteParam buildImageWriteParam(ImageWriter writer) {
-            // Set the compression quality to 0.5
-            ImageWriteParam param = writer.getDefaultWriteParam();
+            ImageWriteParam param = new JPEGImageWriteParam(null);
             param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-            param.setCompressionQuality(0.5f);
+            param.setCompressionQuality(0.3f);
             return param;
         }
     }
