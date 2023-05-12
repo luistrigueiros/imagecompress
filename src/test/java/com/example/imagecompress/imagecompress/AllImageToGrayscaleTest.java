@@ -18,12 +18,12 @@ import static com.example.imagecompress.imagecompress.TestSupport.getTemporaryFi
 
 class AllImageToGrayscaleTest {
     private static final Logger logger = LoggerFactory.getLogger(AllImageToGrayscaleTest.class);
-    private static ImageToGrayscale imageToGrayscale;
+    private static ImageToGrayscale2 imageToGrayscale;
 
     @BeforeAll
     static void init() throws IOException {
         TemporaryFileStorage temporaryFileStorage = getTemporaryFileStorage();
-        imageToGrayscale = new ImageToGrayscale(temporaryFileStorage);
+        imageToGrayscale = new ImageToGrayscale2(temporaryFileStorage);
     }
     private static Stream<Arguments> samples() throws IOException {
         return Stream.of(

@@ -21,7 +21,7 @@ public class ImageToGrayscale {
         BufferedImage grayscaleImage = new BufferedImage(
                 originalImage.getWidth(),
                 originalImage.getHeight(),
-                originalImage.getType());
+                BufferedImage.TYPE_BYTE_GRAY);
 
         // Iterate through each pixel of the original image and calculate its grayscale value
         for (int y = 0; y < originalImage.getHeight(); y++) {
