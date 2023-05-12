@@ -40,7 +40,7 @@ public class PngCompressor implements ImageCompressor {
     }
 
     @Override
-    public File compress(File input) throws Exception {
+    public File compressImage(File input) throws Exception {
         return imageCompressorSupport.compressImage(input, ImageCompressorSupport.ImageFormat.PNG);
     }
 }

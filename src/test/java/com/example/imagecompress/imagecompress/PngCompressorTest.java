@@ -10,12 +10,12 @@ import java.nio.file.Paths;
 
 import static com.example.imagecompress.imagecompress.TestSupport.getTemporaryFileStorage;
 
-class JpegCompressorTest {
-    private static final Logger logger = LoggerFactory.getLogger(JpegCompressorTest.class);
+class PngCompressorTest {
+    private static final Logger logger = LoggerFactory.getLogger(PngCompressorTest.class);
     @Test
     void simpleTest() throws Exception {
-        ImageCompressor imageCompressor = new JpegCompressor(getTemporaryFileStorage());
-        File file = Paths.get("sample/input.jpg").toFile();
+        ImageCompressor imageCompressor = new PngCompressor(getTemporaryFileStorage());
+        File file = Paths.get("sample/input.png").toFile();
         File compressed = imageCompressor.compressImage(file);
         float compressedPercentage = TestSupport.getCompressedPercentage(file, compressed);
         Assertions.assertTrue( compressedPercentage < 100);

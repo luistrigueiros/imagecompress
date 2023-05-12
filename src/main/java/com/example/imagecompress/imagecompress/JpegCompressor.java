@@ -33,7 +33,7 @@ public class JpegCompressor implements ImageCompressor {
     private final ImageCompressorSupport imageCompressorSupport;
 
     @Override
-    public File compress(File input) throws Exception {
+    public File compressImage(File input) throws Exception {
         return imageCompressorSupport.compressImage(input, ImageCompressorSupport.ImageFormat.JPEG);
     }
 
