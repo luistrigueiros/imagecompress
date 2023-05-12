@@ -3,6 +3,7 @@ package com.example.imagecompress.support;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.RemovalCause;
+import com.github.benmanes.caffeine.cache.Scheduler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class DisposalMgr {
     private final static Logger logger = LoggerFactory.getLogger(DisposalMgr.class);
     private final Cache<String, ImageWriter> cache = Caffeine.newBuilder()
+            .scheduler(Scheduler.systemScheduler())
             .expireAfterWrite(250, TimeUnit.MILLISECONDS)
             .evictionListener((String key, ImageWriter writer, RemovalCause cause) -> {
                 if (writer != null) {
