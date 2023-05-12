@@ -8,13 +8,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ImageToGrayscale {
+public class ImageToGrayscale implements ImageGrayscaler {
     private final TemporaryFileStorage temporaryFileStorage;
 
     public ImageToGrayscale(TemporaryFileStorage temporaryFileStorage) {
         this.temporaryFileStorage = temporaryFileStorage;
     }
 
+    @Override
     public File transformToGrayscale(File input, ImageFormat imageFormat) throws IOException {
         BufferedImage originalImage = ImageIO.read(input);
         // Create a new image with the same dimensions as the original

@@ -8,13 +8,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ImageToGrayscale2 {
+public class ImageToGrayscale2 implements ImageGrayscaler {
     private final TemporaryFileStorage temporaryFileStorage;
 
     public ImageToGrayscale2(TemporaryFileStorage temporaryFileStorage) {
         this.temporaryFileStorage = temporaryFileStorage;
     }
 
+    @Override
     public File transformToGrayscale(File input, ImageFormat imageFormat) throws IOException {
         BufferedImage originalImage = ImageIO.read(input);
         BufferedImage grayscaleImage = new BufferedImage(

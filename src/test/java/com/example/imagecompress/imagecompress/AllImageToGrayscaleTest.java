@@ -18,7 +18,7 @@ import static com.example.imagecompress.imagecompress.TestSupport.getTemporaryFi
 
 class AllImageToGrayscaleTest {
     private static final Logger logger = LoggerFactory.getLogger(AllImageToGrayscaleTest.class);
-    private static ImageToGrayscale2 imageToGrayscale;
+    private static ImageGrayscaler imageToGrayscale;
 
     @BeforeAll
     static void init() throws IOException {
