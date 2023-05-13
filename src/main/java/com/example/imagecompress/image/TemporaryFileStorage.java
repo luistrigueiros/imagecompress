@@ -24,6 +24,7 @@ public class TemporaryFileStorage {
             FileUtils.forceMkdir(baseDirectory);
         }
         logger.info("Using baseDirectory={}", baseDirectory.getAbsolutePath());
+        FileUtils.forceDeleteOnExit(baseDirectory);
     }
 
     public File createTemporayFile(String suffix) throws IOException {
@@ -43,6 +44,10 @@ public class TemporaryFileStorage {
             logger.debug("Deleted {} files", total);
             return total;
         }
+    }
+
+    public File getBaseDirectory() {
+        return baseDirectory;
     }
 
     private boolean deleteFile(File file) {
