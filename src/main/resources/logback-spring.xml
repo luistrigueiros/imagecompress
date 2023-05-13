@@ -40,7 +40,7 @@
 
     <logger name="org.springframework" level="warn"/>
 
-    <logger name="com.example" level="trace" additivity="false">
+    <logger name="com.example" level="debug" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>

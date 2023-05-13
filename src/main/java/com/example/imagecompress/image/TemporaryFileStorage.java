@@ -34,14 +34,14 @@ public class TemporaryFileStorage {
     }
 
     public long cleanUpTempFiles(int maxFilesToPurge) throws IOException {
-        logger.info("Searching for temporary files to delete in {}", baseDirectory.getAbsolutePath());
+        logger.trace("Searching for temporary files to delete in {}", baseDirectory.getAbsolutePath());
         try (Stream<Path> stream = Files.list(baseDirectory.toPath())) {
             long total = stream.map(Path::toFile)
                     .filter(fileDeleteFilter)
                     .limit(maxFilesToPurge)
                     .peek(this::deleteFile)
                     .count();
-            logger.debug("Deleted {} files", total);
+            logger.trace("Deleted {} files", total);
             return total;
         }
     }
@@ -51,9 +51,9 @@ public class TemporaryFileStorage {
     }
 
     private boolean deleteFile(File file) {
-        logger.debug("About to delete file {}", file.getAbsolutePath());
+        logger.info("About to delete file {}", file.getAbsolutePath());
         boolean deleted = FileUtils.deleteQuietly(file);
-        logger.debug("File {} deleted={}", file.getAbsolutePath(), deleted);
+        logger.info("File {} deleted={}", file.getAbsolutePath(), deleted);
         return deleted;
     }
 }

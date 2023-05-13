@@ -49,7 +49,8 @@ public class ImageController {
 
     private File compressImage(ImageCompressor imageCompressor, MultipartFile file) {
         try {
-            File temporayFile = temporaryFileStorage.createTemporayFile("." + imageCompressor.getSupportImageFormat().label);
+            String suffix = "." + imageCompressor.getSupportImageFormat().label;
+            File temporayFile = temporaryFileStorage.createTemporayFile(suffix);
             file.transferTo(temporayFile);
             return imageCompressor.compressImage(temporayFile);
         }catch (Exception exception) {
