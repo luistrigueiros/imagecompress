@@ -33,7 +33,7 @@ class AllImageCompressorTest {
         logger.debug("Testing for {}", input);
         File file = Paths.get(input).toFile();
         File compressed = imageCompressor.compressImage(file);
-        float compressedPercentage = Util.getCompressedPercentage(file, compressed);
+        float compressedPercentage = Util.getCompressedPercentage(file, compressed, true);
         Assertions.assertTrue(compressedPercentage < 100);
     }
 }

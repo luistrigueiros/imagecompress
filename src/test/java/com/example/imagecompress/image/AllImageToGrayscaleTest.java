@@ -40,7 +40,7 @@ class AllImageToGrayscaleTest {
         logger.debug("Testing for {}", input);
         File file = Paths.get(input).toFile();
         File compressed = imageToGrayscale.transformToGrayscale(file, imageFormat);
-        float compressedPercentage = Util.getCompressedPercentage(file, compressed);
+        float compressedPercentage = Util.getCompressedPercentage(file, compressed, true);
         Assertions.assertTrue(compressedPercentage < 100);
     }
 }
