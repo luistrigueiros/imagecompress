@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ImageCompressApplication {
+public class Main {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ImageCompressApplication.class, args);
+		SpringApplication.run(Main.class, args);
 	}
 
 }
