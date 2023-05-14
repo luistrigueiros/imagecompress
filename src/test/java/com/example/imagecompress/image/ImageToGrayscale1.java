@@ -8,10 +8,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ImageToGrayscale implements ImageGrayscaler {
+public class ImageToGrayscale1 implements ImageGrayscaler {
     private final TemporaryFileStorage temporaryFileStorage;
 
-    public ImageToGrayscale(TemporaryFileStorage temporaryFileStorage) {
+    public ImageToGrayscale1(TemporaryFileStorage temporaryFileStorage) {
         this.temporaryFileStorage = temporaryFileStorage;
     }
 

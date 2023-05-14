@@ -19,8 +19,6 @@ public class ImageToGrayscale3 implements ImageGrayscaler {
     @Override
     public File transformToGrayscale(File input, ImageFormat imageFormat) throws IOException {
         BufferedImage originalImage = ImageIO.read(input);
-//        BufferedImageOp filter = new GrayFilter(true, 50);
-//        BufferedImageFilter producer = new BufferedImageFilter(filter);
 
         ImageFilter filter = new GrayFilter(true, 50);
         ImageProducer producer = new FilteredImageSource(originalImage.getSource(), filter);

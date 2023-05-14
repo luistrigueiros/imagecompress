@@ -32,6 +32,7 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	failFast = false
 }
 
 jmh {
