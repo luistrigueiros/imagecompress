@@ -18,7 +18,7 @@ public class DisposalMgr {
     private final static Logger logger = LoggerFactory.getLogger(DisposalMgr.class);
     private final Cache<String, ImageWriter> cache = Caffeine.newBuilder()
             .scheduler(Scheduler.systemScheduler())
-            .expireAfterWrite(250, TimeUnit.MILLISECONDS)
+            .expireAfterWrite(150, TimeUnit.MILLISECONDS)
             .evictionListener((String key, ImageWriter writer, RemovalCause cause) -> {
                 if (writer != null) {
                     writer.dispose();

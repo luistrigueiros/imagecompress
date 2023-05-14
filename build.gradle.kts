@@ -35,6 +35,7 @@ tasks.withType<Test> {
 }
 
 jmh {
+	benchmarkMode.set(listOf("all"))
 	warmupIterations.set(2)
 	iterations.set(2)
 	fork.set(2)

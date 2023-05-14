@@ -1,6 +1,7 @@
 package com.example.imagecompress.image;
 
 import com.example.imagecompress.support.ImageFormat;
+import com.example.imagecompress.support.Util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,7 +40,7 @@ class AllImageToGrayscaleTest {
         logger.debug("Testing for {}", input);
         File file = Paths.get(input).toFile();
         File compressed = imageToGrayscale.transformToGrayscale(file, imageFormat);
-        float compressedPercentage = TestSupport.getCompressedPercentage(file, compressed);
+        float compressedPercentage = Util.getCompressedPercentage(file, compressed);
         Assertions.assertTrue(compressedPercentage < 100);
     }
 }

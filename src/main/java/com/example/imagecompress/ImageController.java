@@ -1,10 +1,6 @@
 package com.example.imagecompress;
 
-import com.example.imagecompress.image.ImageCompressor;
 import com.example.imagecompress.image.TemporaryFileStorage;
-import com.example.imagecompress.support.ImageCompressService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,7 +18,6 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Set;
 
 @Controller
 public class ImageController {

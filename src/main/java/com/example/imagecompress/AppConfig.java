@@ -16,7 +16,7 @@ import java.time.Duration;
 @Configuration
 @EnableScheduling
 public class AppConfig {
-    private Duration maxWaitDuration = Duration.ofSeconds(30);
+    private Duration maxWaitDuration = Duration.ofSeconds(10);
     @Bean
     public TemporaryFileStorage temporaryFileStorage() throws IOException {
         File baseDirectory = TemporaryFileStorageFactory.getBaseDirectory();

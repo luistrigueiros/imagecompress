@@ -1,5 +1,6 @@
 package com.example.imagecompress.image;
 
+import com.example.imagecompress.support.Util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -32,7 +33,7 @@ class AllImageCompressorTest {
         logger.debug("Testing for {}", input);
         File file = Paths.get(input).toFile();
         File compressed = imageCompressor.compressImage(file);
-        float compressedPercentage = TestSupport.getCompressedPercentage(file, compressed);
+        float compressedPercentage = Util.getCompressedPercentage(file, compressed);
         Assertions.assertTrue(compressedPercentage < 100);
     }
 }
