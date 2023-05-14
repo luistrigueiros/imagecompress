@@ -12,7 +12,15 @@ repositories {
 	mavenCentral()
 }
 
+configurations {
+	compileOnly {
+		extendsFrom(configurations.annotationProcessor.get())
+	}
+}
+
 dependencies {
+	compileOnly("org.projectlombok:lombok")
+	annotationProcessor("org.projectlombok:lombok")
 	implementation("commons-io:commons-io:2.11.0")
 	implementation("com.github.ben-manes.caffeine:caffeine:2.9.3")
 	implementation("org.springframework.boot:spring-boot-starter-web")

@@ -13,7 +13,8 @@ public class TemporaryFileStorageFactory {
         return Files.createTempDirectory("TMP_IMG_STORAGE").toFile();
     }
 
-    public static TemporaryFileStorage createTemporaryFileStorage(File baseDirectory, Duration waitDuration) throws IOException {
+    public static TemporaryFileStorage createTemporaryFileStorage(File baseDirectory, Duration waitDuration)
+            throws IOException {
         FileAgeWaitFilter ageWaitFilter = new FileAgeWaitFilter(waitDuration);
         return new TemporaryFileStorage(baseDirectory, ageWaitFilter);
     }
