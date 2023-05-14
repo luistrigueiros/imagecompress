@@ -26,7 +26,7 @@ class AllImageToGrayscaleTest {
         TemporaryFileStorage temporaryFileStorage = getTemporaryFileStorage();
         imageToGrayscale = new ImageToGrayscale3(temporaryFileStorage);
     }
-    private static Stream<Arguments> samples() throws IOException {
+    private static Stream<Arguments> samples()  {
         return Stream.of(
                 Arguments.of("sample/input.jpg", ImageFormat.JPEG),
                 Arguments.of("sample/input.png", ImageFormat.PNG),
