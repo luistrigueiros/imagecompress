@@ -2,6 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "2.7.11"
 	id("io.spring.dependency-management") version "1.0.15.RELEASE"
+	id("me.champeau.jmh") version "0.7.1"
 }
 
 group = "com.example.imagecompress"
@@ -31,4 +32,10 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+jmh {
+	warmupIterations.set(2)
+	iterations.set(2)
+	fork.set(2)
 }

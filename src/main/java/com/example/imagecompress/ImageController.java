@@ -2,6 +2,7 @@ package com.example.imagecompress;
 
 import com.example.imagecompress.image.ImageCompressor;
 import com.example.imagecompress.image.TemporaryFileStorage;
+import com.example.imagecompress.support.ImageCompressService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -24,38 +26,24 @@ import java.util.Set;
 
 @Controller
 public class ImageController {
-    private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
-    private final Set<ImageCompressor> imageCompressors;
+    private final ImageCompressService imageCompressService;
 
     private final TemporaryFileStorage temporaryFileStorage;
-    public ImageController(TemporaryFileStorage temporaryFileStorage,Set<ImageCompressor> imageCompressors) {
-        this.imageCompressors = imageCompressors;
+
+    public ImageController(TemporaryFileStorage temporaryFileStorage, ImageCompressService imageCompressService) {
+        this.imageCompressService = imageCompressService;
         this.temporaryFileStorage = temporaryFileStorage;
-        logger.info("Created instance with {} compressors", imageCompressors.size());
     }
 
     @PostMapping("/compress")
     public ResponseEntity<InputStreamResource> compress(
             @RequestParam MultipartFile file,
-            @RequestParam String type) {
-        return imageCompressors
-                .stream()
-                .filter(it -> it.canHandle(type))
-                .findFirst()
-                .map(it -> compressImage(it, file))
+            @RequestParam String type) throws IOException {
+        File temporayFile = temporaryFileStorage.createTemporayFile("." + type);
+        file.transferTo(temporayFile);
+        return imageCompressService.compress(temporayFile, type)
                 .map(this::toResponse)
                 .orElseGet(this::toFailResponse);
-    }
-
-    private File compressImage(ImageCompressor imageCompressor, MultipartFile file) {
-        try {
-            String suffix = "." + imageCompressor.getSupportImageFormat().label;
-            File temporayFile = temporaryFileStorage.createTemporayFile(suffix);
-            file.transferTo(temporayFile);
-            return imageCompressor.compressImage(temporayFile);
-        }catch (Exception exception) {
-            throw new RuntimeException(exception);
-        }
     }
 
     private ResponseEntity<InputStreamResource> toResponse(File file) {
@@ -67,7 +55,7 @@ public class ImageController {
             headers.setContentLength(Files.size(path));
             headers.setContentType(MediaType.valueOf(Files.probeContentType(path)));
             return new ResponseEntity<>(inputStreamResource, headers, HttpStatus.OK);
-        }catch (Exception exception) {
+        } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
     }
@@ -75,7 +63,7 @@ public class ImageController {
     private ResponseEntity<InputStreamResource> toFailResponse() {
         HttpHeaders headers = new HttpHeaders();
         byte[] bytes = "Error processing".getBytes(StandardCharsets.UTF_8);
-        InputStreamResource inputStreamResource = new InputStreamResource( new ByteArrayInputStream(bytes));
-        return new ResponseEntity<>(inputStreamResource, headers , HttpStatus.UNPROCESSABLE_ENTITY);
+        InputStreamResource inputStreamResource = new InputStreamResource(new ByteArrayInputStream(bytes));
+        return new ResponseEntity<>(inputStreamResource, headers, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }
