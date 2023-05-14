@@ -40,4 +40,6 @@ jmh {
 	warmupIterations.set(2)
 	iterations.set(2)
 	fork.set(2)
+	jmhTimeout.set("20")
+	timeUnit.set("s")
 }
