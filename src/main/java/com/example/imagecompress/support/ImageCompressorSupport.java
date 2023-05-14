@@ -1,6 +1,6 @@
 package com.example.imagecompress.support;
 
-import com.example.imagecompress.image.TemporaryFileStorage;
+import com.example.imagecompress.image.TempFileStorage;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriter;
@@ -11,18 +11,18 @@ import java.io.IOException;
 
 public class ImageCompressorSupport {
 
-    private final TemporaryFileStorage temporaryFileStorage;
+    private final TempFileStorage tempFileStorage;
     private final CompressParamsFactory compressParamsFactory;
     private final DisposalMgr disposalMgr = new DisposalMgr();
 
-    public ImageCompressorSupport(TemporaryFileStorage temporaryFileStorage, CompressParamsFactory compressParamsFactory) {
-        this.temporaryFileStorage = temporaryFileStorage;
+    public ImageCompressorSupport(TempFileStorage tempFileStorage, CompressParamsFactory compressParamsFactory) {
+        this.tempFileStorage = tempFileStorage;
         this.compressParamsFactory = compressParamsFactory;
     }
 
     public File compressImage(File input, ImageFormat imageType) throws IOException {
         BufferedImage originalImage = ImageIO.read(input);
-        File compressedFile = temporaryFileStorage.createTemporayFile("." + imageType.label);
+        File compressedFile = tempFileStorage.createTempFile("." + imageType.label);
         ImageWriter writer = compressParamsFactory.getWriter();
         // Create an ImageOutputStream to write the compressed image
         try (ImageOutputStream outputStream = ImageIO.createImageOutputStream(compressedFile)) {

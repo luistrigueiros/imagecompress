@@ -1,6 +1,6 @@
 package com.example.imagecompress;
 
-import com.example.imagecompress.image.TemporaryFileStorage;
+import com.example.imagecompress.image.TempFileStorage;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,22 +23,26 @@ import java.nio.file.Path;
 public class ImageController {
     private final ImageCompressService imageCompressService;
 
-    private final TemporaryFileStorage temporaryFileStorage;
+    private final TempFileStorage tempFileStorage;
 
-    public ImageController(TemporaryFileStorage temporaryFileStorage, ImageCompressService imageCompressService) {
+    public ImageController(TempFileStorage tempFileStorage, ImageCompressService imageCompressService) {
         this.imageCompressService = imageCompressService;
-        this.temporaryFileStorage = temporaryFileStorage;
+        this.tempFileStorage = tempFileStorage;
     }
 
     @PostMapping("/compress")
     public ResponseEntity<InputStreamResource> compress(
             @RequestParam MultipartFile file,
             @RequestParam String type) throws IOException {
-        File temporayFile = temporaryFileStorage.createTemporayFile("." + type);
-        file.transferTo(temporayFile);
-        return imageCompressService.compress(temporayFile, type)
+        return imageCompressService.compress(getTempFile(file, type), type)
                 .map(this::toResponse)
                 .orElseGet(this::toFailResponse);
+    }
+
+    private File getTempFile(MultipartFile file, String type) throws IOException {
+        File tempFile = tempFileStorage.createTempFile("." + type);
+        file.transferTo(tempFile);
+        return tempFile;
     }
 
     private ResponseEntity<InputStreamResource> toResponse(File file) {

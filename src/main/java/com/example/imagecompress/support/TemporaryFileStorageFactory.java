@@ -1,6 +1,6 @@
 package com.example.imagecompress.support;
 
-import com.example.imagecompress.image.TemporaryFileStorage;
+import com.example.imagecompress.image.TempFileStorage;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,9 +13,9 @@ public class TemporaryFileStorageFactory {
         return Files.createTempDirectory("TMP_IMG_STORAGE").toFile();
     }
 
-    public static TemporaryFileStorage createTemporaryFileStorage(File baseDirectory, Duration waitDuration)
+    public static TempFileStorage createTemporaryFileStorage(File baseDirectory, Duration waitDuration)
             throws IOException {
         FileAgeWaitFilter ageWaitFilter = new FileAgeWaitFilter(waitDuration);
-        return new TemporaryFileStorage(baseDirectory, ageWaitFilter);
+        return new TempFileStorage(baseDirectory, ageWaitFilter);
     }
 }

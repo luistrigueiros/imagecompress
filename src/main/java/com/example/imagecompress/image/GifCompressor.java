@@ -9,8 +9,8 @@ import java.io.File;
 public class GifCompressor implements ImageCompressor {
     private final ImageCompressorSupport imageCompressorSupport;
 
-    public GifCompressor(TemporaryFileStorage temporaryFileStorage) {
-        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new JpegCompressParamsFactory());
+    public GifCompressor(TempFileStorage tempFileStorage) {
+        this.imageCompressorSupport = new ImageCompressorSupport(tempFileStorage, new JpegCompressParamsFactory());
     }
 
     @Override

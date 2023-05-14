@@ -11,12 +11,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public class TemporaryFileStorage {
-    private final static Logger logger = LoggerFactory.getLogger(TemporaryFileStorage.class);
+public class TempFileStorage {
+    private final static Logger logger = LoggerFactory.getLogger(TempFileStorage.class);
     private final File baseDirectory;
     private final Predicate<File> fileDeleteFilter;
 
-    public TemporaryFileStorage(File baseDirectory, Predicate<File> fileDeleteFilter) throws IOException {
+    public TempFileStorage(File baseDirectory, Predicate<File> fileDeleteFilter) throws IOException {
         this.baseDirectory = baseDirectory;
         this.fileDeleteFilter = fileDeleteFilter;
         if (!baseDirectory.exists()) {
@@ -27,7 +27,7 @@ public class TemporaryFileStorage {
         FileUtils.forceDeleteOnExit(baseDirectory);
     }
 
-    public File createTemporayFile(String suffix) throws IOException {
+    public File createTempFile(String suffix) throws IOException {
         File file = File.createTempFile("temp-img", suffix, baseDirectory);
         logger.debug("Created temp file {}", file.getAbsolutePath());
         return file;

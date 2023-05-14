@@ -20,16 +20,16 @@ class AllImageToGrayscaleTest {
     private static final Logger logger = LoggerFactory.getLogger(AllImageToGrayscaleTest.class);
 
     private static Stream<Arguments> samples() throws IOException {
-        TemporaryFileStorage temporaryFileStorage = getTemporaryFileStorage();
+        TempFileStorage tempFileStorage = getTemporaryFileStorage();
         return Stream.of(
-                Arguments.of(new ImageToGrayscale1(temporaryFileStorage),
+                Arguments.of(new ImageToGrayscale1(tempFileStorage),
                         "sample/input.jpg",
                         ImageFormat.JPEG),
                 Arguments.of(
-                        new ImageToGrayscale2(temporaryFileStorage),
+                        new ImageToGrayscale2(tempFileStorage),
                         "sample/input.png",
                         ImageFormat.PNG),
-                Arguments.of(new ImageToGrayscale3(temporaryFileStorage),
+                Arguments.of(new ImageToGrayscale3(tempFileStorage),
                         "sample/input.gif",
                         ImageFormat.GIF)
         );

@@ -19,11 +19,11 @@ class AllImageCompressorTest {
     private static final Logger logger = LoggerFactory.getLogger(AllImageCompressorTest.class);
 
     private static Stream<Arguments> samples() throws IOException {
-        TemporaryFileStorage temporaryFileStorage = getTemporaryFileStorage();
+        TempFileStorage tempFileStorage = getTemporaryFileStorage();
         return Stream.of(
-                Arguments.of("sample/input.jpg", new JpegCompressor(temporaryFileStorage)),
-                Arguments.of("sample/input.png", new PngCompressor(temporaryFileStorage)),
-                Arguments.of("sample/input.gif", new GifCompressor(temporaryFileStorage))
+                Arguments.of("sample/input.jpg", new JpegCompressor(tempFileStorage)),
+                Arguments.of("sample/input.png", new PngCompressor(tempFileStorage)),
+                Arguments.of("sample/input.gif", new GifCompressor(tempFileStorage))
         );
     }
 

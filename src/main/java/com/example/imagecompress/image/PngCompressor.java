@@ -11,9 +11,9 @@ public class PngCompressor implements ImageCompressor {
 
     private final ImageCompressorSupport imageCompressorSupport;
 
-    public PngCompressor(TemporaryFileStorage temporaryFileStorage) {
+    public PngCompressor(TempFileStorage tempFileStorage) {
 //        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new PngCompressParamsFactory());
-        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new JpegCompressParamsFactory());
+        this.imageCompressorSupport = new ImageCompressorSupport(tempFileStorage, new JpegCompressParamsFactory());
     }
 
     @Override

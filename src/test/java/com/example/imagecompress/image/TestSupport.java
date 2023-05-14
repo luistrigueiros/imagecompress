@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class TestSupport {
 
-    static TemporaryFileStorage getTemporaryFileStorage() throws IOException {
+    static TempFileStorage getTemporaryFileStorage() throws IOException {
         File baseDirectory = TemporaryFileStorageFactory.getBaseDirectory();
         Duration waitDuration = Duration.ofMillis(800);
         return TemporaryFileStorageFactory.createTemporaryFileStorage(baseDirectory, waitDuration);

@@ -25,7 +25,7 @@ public class JpegCompressor implements ImageCompressor {
         return ImageFormat.JPEG;
     }
 
-    public JpegCompressor(TemporaryFileStorage temporaryFileStorage) {
-        this.imageCompressorSupport = new ImageCompressorSupport(temporaryFileStorage, new JpegCompressParamsFactory());
+    public JpegCompressor(TempFileStorage tempFileStorage) {
+        this.imageCompressorSupport = new ImageCompressorSupport(tempFileStorage, new JpegCompressParamsFactory());
     }
 }

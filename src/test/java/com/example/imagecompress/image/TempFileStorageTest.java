@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class TemporaryFileStorageTest {
+class TempFileStorageTest {
     private File baseDirectory;
 
     @BeforeEach
@@ -30,8 +30,8 @@ class TemporaryFileStorageTest {
     @Test
     void simpleHappyPathTest() throws IOException {
         Duration waitDuration = Duration.ofMillis(800);
-        TemporaryFileStorage storage = TemporaryFileStorageFactory.createTemporaryFileStorage(baseDirectory, waitDuration);
-        File file = storage.createTemporayFile(".png");
+        TempFileStorage storage = TemporaryFileStorageFactory.createTemporaryFileStorage(baseDirectory, waitDuration);
+        File file = storage.createTempFile(".png");
         FileUtils.copyFile(Paths.get("sample/input.jpg").toFile(), file);
         Instant afterWaitDuration = Instant.now().plus(Duration.ofSeconds(1));
         Awaitility.await().until(() -> afterWaitDuration.compareTo(Instant.now()) < 0);

@@ -9,10 +9,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class ImageToGrayscale1 implements ImageGrayscaler {
-    private final TemporaryFileStorage temporaryFileStorage;
+    private final TempFileStorage tempFileStorage;
 
-    public ImageToGrayscale1(TemporaryFileStorage temporaryFileStorage) {
-        this.temporaryFileStorage = temporaryFileStorage;
+    public ImageToGrayscale1(TempFileStorage tempFileStorage) {
+        this.tempFileStorage = tempFileStorage;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ImageToGrayscale1 implements ImageGrayscaler {
                 grayscaleImage.setRGB(x, y, grayColor.getRGB());
             }
         }
-        File output = temporaryFileStorage.createTemporayFile("." + imageFormat.label);
+        File output = tempFileStorage.createTempFile("." + imageFormat.label);
         ImageIO.write(grayscaleImage,imageFormat.label, output);
         return output;
     }
