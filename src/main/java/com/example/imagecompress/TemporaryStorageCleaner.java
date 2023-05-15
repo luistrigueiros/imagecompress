@@ -20,9 +20,9 @@ public class TemporaryStorageCleaner implements DisposableBean {
         this.tempFileStorage = tempFileStorage;
     }
 
-    @Scheduled(fixedDelay = 20_000)
+    @Scheduled(fixedDelay = 5_000)
     public void scheduleFixedDelayTask() throws IOException {
-        tempFileStorage.cleanUpTempFiles(10);
+        tempFileStorage.cleanUpTempFiles(100);
     }
 
     @Override
