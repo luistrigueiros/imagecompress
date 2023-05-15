@@ -18,7 +18,7 @@ public class DisposalMgr {
     private final static Logger logger = LoggerFactory.getLogger(DisposalMgr.class);
     private final Cache<String, ImageWriter> cache = Caffeine.newBuilder()
             .scheduler(Scheduler.systemScheduler())
-            .expireAfterWrite(150, TimeUnit.MILLISECONDS)
+            .expireAfterWrite(50, TimeUnit.MILLISECONDS)
             .evictionListener((String key, ImageWriter writer, RemovalCause cause) -> {
                 if (writer != null) {
                     writer.dispose();
@@ -28,8 +28,9 @@ public class DisposalMgr {
             .build();
 
     public void register(File file, ImageWriter imageWriter) {
-        cache.put(file.getAbsolutePath(), imageWriter);
-        logger.debug("Pushed item into stack now have [{}] items", cache.asMap().size());
+        String absolutePath = file.getAbsolutePath();
+        cache.put(absolutePath, imageWriter);
+        logger.debug("Registered [{}], now have [{}] items", absolutePath, cache.asMap().size());
     }
 
 }
