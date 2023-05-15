@@ -23,9 +23,9 @@ public class FileAgeWaitFilter implements Predicate<File> {
         boolean fileOlder = FileUtils.isFileOlder(file, Date.from(Instant.now().minus(pickUpWaitDuration)));
         String absolutePath = file.getAbsolutePath();
         if (!fileOlder) {
-            logger.debug("Not allowing file={}", absolutePath);
+            logger.trace("Not allowing file={}", absolutePath);
         } else {
-            logger.debug("Allowing file={}", absolutePath);
+            logger.trace("Allowing file={}", absolutePath);
         }
         return fileOlder;
     }
