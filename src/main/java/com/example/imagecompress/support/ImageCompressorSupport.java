@@ -13,7 +13,7 @@ public class ImageCompressorSupport {
 
     private final TempFileStorage tempFileStorage;
     private final CompressParamsFactory compressParamsFactory;
-    private final DisposalMgr disposalMgr = new DisposalMgr();
+    private final DisposalMgr disposalMgr = DisposalMgr.getInstance();
 
     public ImageCompressorSupport(TempFileStorage tempFileStorage, CompressParamsFactory compressParamsFactory) {
         this.tempFileStorage = tempFileStorage;
@@ -32,7 +32,7 @@ public class ImageCompressorSupport {
             // Write the image with the specified compression settings
             writer.write(null, new javax.imageio.IIOImage(originalImage, null, null),
                     compressParamsFactory.getImageWriteParam(writer));
-            disposalMgr.register(compressedFile, writer);
+            disposalMgr.register(writer);
         }
         return compressedFile;
     }

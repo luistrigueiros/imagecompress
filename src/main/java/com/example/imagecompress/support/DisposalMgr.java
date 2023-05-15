@@ -1,36 +1,50 @@
 package com.example.imagecompress.support;
 
-import com.github.benmanes.caffeine.cache.Cache;
-import com.github.benmanes.caffeine.cache.Caffeine;
-import com.github.benmanes.caffeine.cache.RemovalCause;
-import com.github.benmanes.caffeine.cache.Scheduler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageWriter;
-import java.io.File;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * To do the resources clean up out of band from the calling thread and avoid file locking issues on windows
  */
 public class DisposalMgr {
     private final static Logger logger = LoggerFactory.getLogger(DisposalMgr.class);
-    private final Cache<String, ImageWriter> cache = Caffeine.newBuilder()
-            .scheduler(Scheduler.systemScheduler())
-            .expireAfterWrite(50, TimeUnit.MILLISECONDS)
-            .evictionListener((String key, ImageWriter writer, RemovalCause cause) -> {
-                if (writer != null) {
-                    writer.dispose();
-                    logger.info("Disposing key=[{}] item=[{}]", key, cause);
-                }
-            })
-            .build();
+    private final BlockingQueue<ImageWriter> blockingQueue = new LinkedBlockingQueue<>();
 
-    public void register(File file, ImageWriter imageWriter) {
-        String absolutePath = file.getAbsolutePath();
-        cache.put(absolutePath, imageWriter);
-        logger.debug("Registered [{}], now have [{}] items", absolutePath, cache.asMap().size());
+    private static DisposalMgr instance = null;
+
+    private DisposalMgr() {
+        Thread thread = new Thread(() -> {
+            while (true) {
+                processRequest();
+            }
+        }, "DisposalMgrThread");
+        logger.info("Starting processing thread now");
+        thread.start();
     }
 
+    public static DisposalMgr getInstance() {
+        if (instance == null) {
+            instance = new DisposalMgr();
+        }
+        return instance;
+    }
+
+    public void register(ImageWriter imageWriter) {
+        blockingQueue.add(imageWriter);
+        logger.debug("Registered writer=[{}] , now have [{}] items", imageWriter.hashCode(), blockingQueue.size());
+    }
+
+    private void processRequest() {
+        try {
+            ImageWriter writer = blockingQueue.take();
+            logger.debug("Performing disposal of writer={}", writer.hashCode());
+            writer.dispose();
+        } catch (Throwable throwable) {
+            logger.error("Error while disposing writer ", throwable);
+        }
+    }
 }
