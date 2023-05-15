@@ -51,9 +51,9 @@ public class TempFileStorage {
     }
 
     private boolean deleteFile(File file) {
-        logger.info("About to delete file {}", file.getAbsolutePath());
+        logger.trace("About to delete file {}", file.getAbsolutePath());
         boolean deleted = FileUtils.deleteQuietly(file);
-        logger.info("File {} deleted={}", file.getAbsolutePath(), deleted);
+        logger.trace("File {} deleted={}", file.getAbsolutePath(), deleted);
         return deleted;
     }
 }
